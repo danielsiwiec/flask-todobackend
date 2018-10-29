@@ -1,36 +1,36 @@
-from flask import Flask, url_for, request, jsonify
-from flask_cors import CORS
+import flask
+import flask_cors
 import uuid
 
-app = Flask(__name__)
-CORS(app)
+app = flask.Flask(__name__)
+flask_cors.CORS(app)
 
 todos = {}
 
 @app.route("/")
 def list_todos():
-  return jsonify(list(todos.values()))
+  return flask.jsonify(list(todos.values()))
 
 @app.route("/<id>")
 def get_todo(id):
-  return jsonify(todos[id])
+  return flask.jsonify(todos[id])
 
 @app.route("/", methods=["POST"])
 def add_todo():
   id = str(uuid.uuid1())
-  todo = request.json
+  todo = flask.request.json
   todo['completed'] = False
-  todo['url'] = request.base_url + id
+  todo['url'] = flask.request.base_url + id
   todos[id] = todo
-  return jsonify(todo)
+  return flask.jsonify(todo)
 
 @app.route("/<id>", methods=["PATCH"])
 def patch_todo(id):
-  patch = request.json
+  patch = flask.request.json
   original = todos[id]
   patched = {**original, **patch}
   todos[id] = patched
-  return jsonify(patched)
+  return flask.jsonify(patched)
 
 @app.route("/", methods=["DELETE"])
 def delete_all():
