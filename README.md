@@ -4,10 +4,9 @@
 * pip
 * pipenv
 
-# Installation
+# Running
 
-* `pipenv install`
-* `./go.sh`
+* `make run`
 
 
 # Testing
