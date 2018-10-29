@@ -1,1 +1,1 @@
-FLASK_APP=todo.py flask run
+FLASK_APP=todo.py pipenv run flask run
