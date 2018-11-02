@@ -4,9 +4,13 @@
 * pip
 * pipenv
 
-# Running
+# Running locally
 
-* `make run`
+`make run`
+
+# Running in Docker
+
+`make docker`
 
 
 # Testing
